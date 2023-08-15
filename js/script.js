@@ -1,14 +1,13 @@
 // script.js
 const inventorySlots = document.querySelectorAll('.inventory-slot');
-const items = ["item1", "item2", "item3", /* Add more items */];
 
 inventorySlots.forEach(slot => {
     slot.addEventListener('click', () => {
+        const imgSrc = prompt('Enter item image source:');
         const itemName = prompt('Enter item name:');
         const itemQuantity = parseInt(prompt('Enter item quantity:'), 10);
 
-        if (items.includes(itemName)) {
-            const imgSrc = `images/blue_concrete.png`;
+        if (imgSrc && itemName !== null) {
             const imgElement = document.createElement('img');
             imgElement.src = imgSrc;
 
@@ -22,7 +21,7 @@ inventorySlots.forEach(slot => {
                 slot.appendChild(quantityElement);
             }
         } else {
-            alert('Invalid item name.');
+            alert('Please enter valid item image source and name.');
         }
     });
 });
