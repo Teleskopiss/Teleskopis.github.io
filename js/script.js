@@ -1,41 +1,28 @@
-const searchBar = document.getElementById('searchBar');
-const suggestionsContainer = document.getElementById('suggestions');
+// script.js
 const inventorySlots = document.querySelectorAll('.inventory-slot');
-
-const itemNames = ["diamond sword", "iron pickaxe", "golden apple", /* Add more item names */];
-
-searchBar.addEventListener('input', () => {
-    const searchText = searchBar.value.toLowerCase();
-    const matchedItems = itemNames.filter(itemName => itemName.toLowerCase().includes(searchText));
-
-    displaySuggestions(matchedItems);
-});
-
-function displaySuggestions(suggestions) {
-    suggestionsContainer.innerHTML = '';
-
-    suggestions.forEach(suggestion => {
-        const suggestionElement = document.createElement('div');
-        suggestionElement.textContent = suggestion;
-        suggestionElement.classList.add('suggestion');
-
-        suggestionElement.addEventListener('click', () => {
-            searchBar.value = suggestion;
-            suggestionsContainer.innerHTML = '';
-        });
-
-        suggestionsContainer.appendChild(suggestionElement);
-    });
-}
+const items = ["item1", "item2", "item3", /* Add more items */];
 
 inventorySlots.forEach(slot => {
     slot.addEventListener('click', () => {
-        const itemName = searchBar.value;
-        const itemQuantity = parseInt(prompt('Enter item quantity:'));
+        const itemName = prompt('Enter item name:');
+        const itemQuantity = parseInt(prompt('Enter item quantity:'), 10);
 
-        // Update slot content with user input
-        slot.querySelector('img').src = `images/${itemName.toLowerCase().replace(/\s/g, '_')}.png`;
-        slot.querySelector('input[type="text"]').value = itemName;
-        slot.querySelector('input[type="number"]').value = itemQuantity;
+        if (items.includes(itemName)) {
+            const imgSrc = `images/${itemName}.png`;
+            const imgElement = document.createElement('img');
+            imgElement.src = imgSrc;
+
+            slot.innerHTML = '';
+            slot.appendChild(imgElement);
+
+            if (!isNaN(itemQuantity)) {
+                const quantityElement = document.createElement('span');
+                quantityElement.textContent = itemQuantity;
+                quantityElement.classList.add('quantity');
+                slot.appendChild(quantityElement);
+            }
+        } else {
+            alert('Invalid item name.');
+        }
     });
 });
