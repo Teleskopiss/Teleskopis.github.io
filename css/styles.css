@@ -17,3 +17,13 @@
 .suggestion:hover {
     background-color: #f0f0f0;
 }
+footer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: #888;
+}
+
+.version {
+    font-size: 14px;
+}
