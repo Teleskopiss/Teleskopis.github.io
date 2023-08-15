@@ -1,21 +1,42 @@
-/* styles.css */
-.suggestions {
-    position: absolute;
-    width: 100%;
-    max-height: 150px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    background-color: white;
-    z-index: 1;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-.suggestion {
-    padding: 8px;
+.inventory {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.inventory-slot {
+    border: 2px solid #c0c0c0;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    position: relative;
     cursor: pointer;
 }
 
-.suggestion:hover {
-    background-color: #f0f0f0;
+.inventory-slot img {
+    max-width: 60px;
+    max-height: 60px;
+    margin-bottom: 5px;
+}
+
+.empty-space {
+    grid-column: span 3; /* Span 3 columns */
+    background-color: transparent;
+    border: none;
 }
 footer {
     position: fixed;
