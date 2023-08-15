@@ -1,21 +1,19 @@
-.inventory {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Adjust columns as needed */
-    gap: 10px;
+/* styles.css */
+.suggestions {
+    position: absolute;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    z-index: 1;
 }
 
-.inventory-slot {
-    border: 2px solid #999;
-    padding: 10px;
-    text-align: center;
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
 }
 
-.inventory-slot img {
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.inventory-slot input {
-    width: 100px;
-    margin: 5px;
+.suggestion:hover {
+    background-color: #f0f0f0;
 }
