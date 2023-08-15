@@ -19,4 +19,25 @@ searchBar.addEventListener('input', () => {
     displaySuggestions(matchedItems);
 });
 
-// Rest of the code remains the same
+function displaySuggestions(suggestions) {
+    suggestionsContainer.innerHTML = '';
+
+    suggestions.forEach(suggestion => {
+        const suggestionElement = document.createElement('div');
+        suggestionElement.textContent = suggestion.name;
+        suggestionElement.classList.add('suggestion');
+
+        suggestionElement.addEventListener('click', () => {
+            searchBar.value = suggestion.name;
+            suggestionsContainer.innerHTML = '';
+
+            // Update slot content with selected item
+            const slot = suggestionsContainer.closest('.inventory-slot');
+            slot.querySelector('img').src = `images/${suggestion.image}`;
+            slot.querySelector('input[type="text"]').value = suggestion.name;
+            // Update other slot content as needed
+        });
+
+        suggestionsContainer.appendChild(suggestionElement);
+    });
+}
