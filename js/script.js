@@ -1,20 +1,12 @@
-// script.js
 const searchBar = document.getElementById('searchBar');
 const suggestionsContainer = document.getElementById('suggestions');
+const inventorySlots = document.querySelectorAll('.inventory-slot');
 
-let itemData = []; // To store fetched item data
-
-// Fetch item data from the JSON file
-fetch('items.json')
-    .then(response => response.json())
-    .then(data => {
-        itemData = data;
-    })
-    .catch(error => console.error('Error fetching item data:', error));
+const itemNames = ["diamond sword", "iron pickaxe", "golden apple", /* Add more item names */];
 
 searchBar.addEventListener('input', () => {
     const searchText = searchBar.value.toLowerCase();
-    const matchedItems = itemData.filter(item => item.name.toLowerCase().includes(searchText));
+    const matchedItems = itemNames.filter(itemName => itemName.toLowerCase().includes(searchText));
 
     displaySuggestions(matchedItems);
 });
@@ -24,20 +16,26 @@ function displaySuggestions(suggestions) {
 
     suggestions.forEach(suggestion => {
         const suggestionElement = document.createElement('div');
-        suggestionElement.textContent = suggestion.name;
+        suggestionElement.textContent = suggestion;
         suggestionElement.classList.add('suggestion');
 
         suggestionElement.addEventListener('click', () => {
-            searchBar.value = suggestion.name;
+            searchBar.value = suggestion;
             suggestionsContainer.innerHTML = '';
-
-            // Update slot content with selected item
-            const slot = suggestionsContainer.closest('.inventory-slot');
-            slot.querySelector('img').src = `images/${suggestion.image}`;
-            slot.querySelector('input[type="text"]').value = suggestion.name;
-            // Update other slot content as needed
         });
 
         suggestionsContainer.appendChild(suggestionElement);
     });
 }
+
+inventorySlots.forEach(slot => {
+    slot.addEventListener('click', () => {
+        const itemName = searchBar.value;
+        const itemQuantity = parseInt(prompt('Enter item quantity:'));
+
+        // Update slot content with user input
+        slot.querySelector('img').src = `images/${itemName.toLowerCase().replace(/\s/g, '_')}.png`;
+        slot.querySelector('input[type="text"]').value = itemName;
+        slot.querySelector('input[type="number"]').value = itemQuantity;
+    });
+});
