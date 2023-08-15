@@ -1,1 +1,21 @@
+.inventory {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Adjust columns as needed */
+    gap: 10px;
+}
 
+.inventory-slot {
+    border: 2px solid #999;
+    padding: 10px;
+    text-align: center;
+}
+
+.inventory-slot img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.inventory-slot input {
+    width: 100px;
+    margin: 5px;
+}
