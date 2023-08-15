@@ -8,7 +8,7 @@ inventorySlots.forEach(slot => {
         const itemQuantity = parseInt(prompt('Enter item quantity:'), 10);
 
         if (items.includes(itemName)) {
-            const imgSrc = `images/blue_concrete.png`;
+            const imgSrc = `images/${itemName}.png`;
             const imgElement = document.createElement('img');
             imgElement.src = imgSrc;
 
